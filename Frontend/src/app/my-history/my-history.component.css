@@ -1,0 +1,106 @@
+.history-container {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .header i {
+    font-size: 3rem;
+    color: #2c3e50;
+  }
+  
+  .header h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+  
+  .orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .order-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    border-right: 5px solid #3498db;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-icon {
+    font-size: 2.5rem;
+    color: #34495e;
+    margin-left: 20px;
+  }
+  
+  .card-content {
+    flex-grow: 1;
+  }
+  
+  .order-id {
+    font-size: 0.8rem;
+    color: #95a5a6;
+    text-transform: uppercase;
+  }
+  
+  .car-details {
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  .dates {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 10px;
+  }
+  
+  .goal {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #2980b9;
+  }
+  
+  .status-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #27ae60;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 50px;
+    background: #f9f9f9;
+    border-radius: 20px;
+  }
+  
+  .btn-rent {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 15px;
+  }

@@ -1,0 +1,26 @@
+<div class="rent-container">
+    <h2>🚗 השכרת רכב מספר: {{ carId }}</h2>
+    <p class="user-welcome">שלום, המערכת מזהה אותך כמשתמש מחובר ✅</p>
+  
+    <div class="order-form">
+      <div class="input-group">
+        <label>תאריך התחלה:</label>
+        <input type="date" [(ngModel)]="startDate" (change)="calculatePrice()">
+      </div>
+  
+      <div class="input-group">
+        <label>תאריך סיום:</label>
+        <input type="date" [(ngModel)]="endDate" (change)="calculatePrice()">
+      </div>
+  
+      @if (totalPrice > 0) {
+        <div class="total-price">
+          <h3>💰 מחיר כולל: {{ totalPrice }} ₪</h3>
+        </div>
+      }
+  
+      <button class="confirm-btn" [disabled]="totalPrice <= 0" (click)="confirmOrder()">
+        אשר הזמנה ועבור לתשלום
+      </button>
+    </div>
+  </div>

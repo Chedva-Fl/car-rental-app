@@ -1,0 +1,36 @@
+<div class="history-container">
+    <div class="header">
+      <i class="bi bi-clock-history"></i>
+      <h2>היסטוריית הנסיעות שלי</h2>
+      <p>צפייה בכל הרכבים ששכרת בעבר</p>
+    </div>
+  
+    <div class="orders-grid" *ngIf="ordersList && ordersList.length > 0">
+      <div class="order-card" *ngFor="let order of ordersList">
+        <div class="card-icon">
+          <i class="bi bi-car-front-fill"></i>
+        </div>
+        <div class="card-content">
+          <div class="order-id">הזמנה #{{ order.IdPay }}</div>
+          <div class="car-details">
+            <strong><i class="bi bi-tag"></i> קוד רכב:</strong> {{ order.idCars }}
+          </div>
+          <div class="dates">
+            <span><i class="bi bi-calendar-check"></i> {{ order.startDate | date:'dd/MM/yyyy' }}</span>
+            <i class="bi bi-arrow-left"></i>
+            <span><i class="bi bi-calendar-x"></i> {{ order.endDate | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="goal">
+            <i class="bi bi-geo-alt-fill"></i> {{ order.goalRent }}
+          </div>
+        </div>
+        <div class="status-badge">הושלם</div>
+      </div>
+    </div>
+  
+    <div *ngIf="ordersList.length === 0" class="empty-state">
+      <i class="bi bi-emoji-frown"></i>
+      <p>עדיין לא ביצעת השכרות במערכת.</p>
+      <button routerLink="/cars" class="btn-rent">להשכרת רכב ראשון</button>
+    </div>
+  </div>

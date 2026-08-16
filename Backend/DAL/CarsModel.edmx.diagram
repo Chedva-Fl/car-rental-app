@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e0c6390f8ac43de820b7ad3fb34633a" Name="Diagram1">
+        <EntityTypeShape EntityType="CarsDBModel.Cars" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsDBModel.Cities" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsDBModel.Custemers" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsDBModel.Payments" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsDBModel.Renls" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="CarsDBModel.FK_Renls_Cars" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsDBModel.FK_Custemers_Cities" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsDBModel.FK_Custemers_Payments" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsDBModel.FK_Renls_Custemers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

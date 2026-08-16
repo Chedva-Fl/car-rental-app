@@ -1,0 +1,48 @@
+<div class="page">
+  <div class="card">
+
+    <div class="card-header">
+      <h2>Create Account</h2>
+      <p>Join our Cars Rental platform</p>
+    </div>
+
+    <form class="form" (ngSubmit)="onSubmit()">
+
+      <div class="input-group">
+        <input type="text" name="Id" [(ngModel)]="Id" required placeholder=" ">
+        <label>ID (Teudat Zehut)</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="firstName" [(ngModel)]="firstName" required placeholder=" ">
+        <label>First Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="lastName" [(ngModel)]="lastName" required placeholder=" ">
+        <label>Last Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="number" name="cityId" [(ngModel)]="cityId" required placeholder=" ">
+        <label>City ID</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" [(ngModel)]="email" required placeholder=" ">
+        <label>Email</label>
+      </div>
+
+      <button type="submit" class="primary-btn">
+        Register
+      </button>
+
+    </form>
+
+    <div class="login-link">
+      <span>Already registered?</span>
+      <a routerLink="/">Back to Login</a>
+    </div>
+
+  </div>
+</div>

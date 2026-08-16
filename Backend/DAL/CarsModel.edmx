@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="IdCar" />
+          </Key>
+          <Property Name="IdCar" Type="int" Nullable="false" />
+          <Property Name="numPlace" Type="int" Nullable="false" />
+          <Property Name="level" Type="int" Nullable="false" />
+          <Property Name="priseDay" Type="int" Nullable="false" />
+          <Property Name="priceThreeDays" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="codeCity" />
+          </Key>
+          <Property Name="codeCity" Type="int" Nullable="false" />
+          <Property Name="nameCity" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Custemers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="idCity" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="numOfLendings" Type="int" Nullable="false" />
+          <Property Name="idPayment" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="IdPay" />
+          </Key>
+          <Property Name="IdPay" Type="int" Nullable="false" />
+          <Property Name="creditCard" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="validity" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="cvc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Renls">
+          <Key>
+            <PropertyRef Name="codeR" />
+          </Key>
+          <Property Name="codeR" Type="int" Nullable="false" />
+          <Property Name="idCustemers" Type="int" Nullable="false" />
+          <Property Name="idCars" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="goalRenl" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Custemers_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Custemers" Type="Self.Custemers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="codeCity" />
+            </Principal>
+            <Dependent Role="Custemers">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Custemers_Payments">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="Custemers" Type="Self.Custemers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="IdPay" />
+            </Principal>
+            <Dependent Role="Custemers">
+              <PropertyRef Name="idPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Renls_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="Renls" Type="Self.Renls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="IdCar" />
+            </Principal>
+            <Dependent Role="Renls">
+              <PropertyRef Name="idCars" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Renls_Custemers">
+          <End Role="Custemers" Type="Self.Custemers" Multiplicity="1" />
+          <End Role="Renls" Type="Self.Renls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Custemers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Renls">
+              <PropertyRef Name="idCustemers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarsDBModelStoreContainer">
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Custemers" EntityType="Self.Custemers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Renls" EntityType="Self.Renls" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Custemers_Cities" Association="Self.FK_Custemers_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Custemers" EntitySet="Custemers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Custemers_Payments" Association="Self.FK_Custemers_Payments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Custemers" EntitySet="Custemers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Renls_Cars" Association="Self.FK_Renls_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Renls" EntitySet="Renls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Renls_Custemers" Association="Self.FK_Renls_Custemers">
+            <End Role="Custemers" EntitySet="Custemers" />
+            <End Role="Renls" EntitySet="Renls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="IdCar" />
+          </Key>
+          <Property Name="IdCar" Type="Int32" Nullable="false" />
+          <Property Name="numPlace" Type="Int32" Nullable="false" />
+          <Property Name="level" Type="Int32" Nullable="false" />
+          <Property Name="priseDay" Type="Int32" Nullable="false" />
+          <Property Name="priceThreeDays" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Renls" Relationship="Self.FK_Renls_Cars" FromRole="Cars" ToRole="Renls" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="codeCity" />
+          </Key>
+          <Property Name="codeCity" Type="Int32" Nullable="false" />
+          <Property Name="nameCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Custemers" Relationship="Self.FK_Custemers_Cities" FromRole="Cities" ToRole="Custemers" />
+        </EntityType>
+        <EntityType Name="Custemers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idCity" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numOfLendings" Type="Int32" Nullable="false" />
+          <Property Name="idPayment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_Custemers_Cities" FromRole="Custemers" ToRole="Cities" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Custemers_Payments" FromRole="Custemers" ToRole="Payments" />
+          <NavigationProperty Name="Renls" Relationship="Self.FK_Renls_Custemers" FromRole="Custemers" ToRole="Renls" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="IdPay" />
+          </Key>
+          <Property Name="IdPay" Type="Int32" Nullable="false" />
+          <Property Name="creditCard" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="validity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cvc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Custemers" Relationship="Self.FK_Custemers_Payments" FromRole="Payments" ToRole="Custemers" />
+        </EntityType>
+        <EntityType Name="Renls">
+          <Key>
+            <PropertyRef Name="codeR" />
+          </Key>
+          <Property Name="codeR" Type="Int32" Nullable="false" />
+          <Property Name="idCustemers" Type="Int32" Nullable="false" />
+          <Property Name="idCars" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="goalRenl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Renls_Cars" FromRole="Renls" ToRole="Cars" />
+          <NavigationProperty Name="Custemers" Relationship="Self.FK_Renls_Custemers" FromRole="Renls" ToRole="Custemers" />
+        </EntityType>
+        <Association Name="FK_Renls_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="Renls" Type="Self.Renls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="IdCar" />
+            </Principal>
+            <Dependent Role="Renls">
+              <PropertyRef Name="idCars" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Custemers_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Custemers" Type="Self.Custemers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="codeCity" />
+            </Principal>
+            <Dependent Role="Custemers">
+              <PropertyRef Name="idCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Custemers_Payments">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="Custemers" Type="Self.Custemers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="IdPay" />
+            </Principal>
+            <Dependent Role="Custemers">
+              <PropertyRef Name="idPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Renls_Custemers">
+          <End Role="Custemers" Type="Self.Custemers" Multiplicity="1" />
+          <End Role="Renls" Type="Self.Renls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Custemers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Renls">
+              <PropertyRef Name="idCustemers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="Self.Cars" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" />
+          <EntitySet Name="Custemers" EntityType="Self.Custemers" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="Renls" EntityType="Self.Renls" />
+          <AssociationSet Name="FK_Renls_Cars" Association="Self.FK_Renls_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Renls" EntitySet="Renls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Custemers_Cities" Association="Self.FK_Custemers_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Custemers" EntitySet="Custemers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Custemers_Payments" Association="Self.FK_Custemers_Payments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Custemers" EntitySet="Custemers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Renls_Custemers" Association="Self.FK_Renls_Custemers">
+            <End Role="Custemers" EntitySet="Custemers" />
+            <End Role="Renls" EntitySet="Renls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarsDBModelStoreContainer" CdmEntityContainer="CarsDBEntities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarsDBModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+                <ScalarProperty Name="numPlace" ColumnName="numPlace" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="priseDay" ColumnName="priseDay" />
+                <ScalarProperty Name="priceThreeDays" ColumnName="priceThreeDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="CarsDBModel.Cities">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="codeCity" ColumnName="codeCity" />
+                <ScalarProperty Name="nameCity" ColumnName="nameCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Custemers">
+            <EntityTypeMapping TypeName="CarsDBModel.Custemers">
+              <MappingFragment StoreEntitySet="Custemers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="numOfLendings" ColumnName="numOfLendings" />
+                <ScalarProperty Name="idPayment" ColumnName="idPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="CarsDBModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="IdPay" ColumnName="IdPay" />
+                <ScalarProperty Name="creditCard" ColumnName="creditCard" />
+                <ScalarProperty Name="validity" ColumnName="validity" />
+                <ScalarProperty Name="cvc" ColumnName="cvc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Renls">
+            <EntityTypeMapping TypeName="CarsDBModel.Renls">
+              <MappingFragment StoreEntitySet="Renls">
+                <ScalarProperty Name="codeR" ColumnName="codeR" />
+                <ScalarProperty Name="idCustemers" ColumnName="idCustemers" />
+                <ScalarProperty Name="idCars" ColumnName="idCars" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="goalRenl" ColumnName="goalRenl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

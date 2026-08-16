@@ -1,0 +1,38 @@
+# Node / Angular
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+Frontend/coverage/
+Frontend/.sass-cache/
+Frontend/npm-debug.log*
+Frontend/yarn-debug.log*
+Frontend/yarn-error.log*
+
+# Visual Studio / .NET
+Backend/.vs/
+Backend/**/bin/
+Backend/**/obj/
+Backend/**/*.user
+Backend/**/*.suo
+Backend/**/*.cache
+Backend/**/*.pdb
+Backend/**/*.exe
+Backend/**/*.dll
+Backend/**/*.mdb
+Backend/**/*.mdf
+Backend/**/*.ldf
+Backend/packages/
+
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# Local environment
+.env
+.env.*

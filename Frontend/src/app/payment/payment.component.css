@@ -1,0 +1,61 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f7f9;
+  direction: rtl;
+  padding: 20px;
+}
+
+.payment-horizontal-layout {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  align-items: stretch; /* גורם לשני המלבנים להיות באותו גובה */
+}
+
+/* המלבנים הלבנים */
+.side-summary, .payment-main-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.side-summary { flex: 0.9; border-top: 5px solid #3b82f6; }
+.payment-main-card { flex: 1.5; }
+
+/* עיצוב התאריכים בתוך הסיכום */
+.date-fields { margin: 15px 0; }
+.input-group-mini { margin-bottom: 10px; }
+.input-group-mini label { display: block; font-size: 0.8rem; color: #64748b; margin-bottom: 4px; }
+.input-group-mini input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.summary-tag { font-weight: 800; color: #1e293b; margin-bottom: 15px; }
+.info-item { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 10px; }
+.divider { height: 1px; background: #f1f5f9; margin: 20px 0; }
+.total-val { font-size: 2rem; font-weight: 900; color: #3b82f6; text-align: center; }
+
+/* טופס אשראי */
+h2 { font-size: 1.6rem; color: #1e293b; margin: 0; }
+.card-header-simple { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.9rem; font-weight: 600; color: #475569; margin-bottom: 8px; }
+.main-input { width: 100%; padding: 14px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-size: 1rem; box-sizing: border-box; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* כפתורים */
+.actions { display: flex; justify-content: space-between; margin-top: 30px; }
+.btn-primary { background: #3b82f6; color: white; border: none; padding: 15px 35px; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+.btn-secondary { background: none; border: none; color: #94a3b8; font-weight: 600; cursor: pointer; }
+
+.secure-tag { font-size: 0.75rem; background: #f0fdf4; color: #166534; padding: 5px 10px; border-radius: 8px; }

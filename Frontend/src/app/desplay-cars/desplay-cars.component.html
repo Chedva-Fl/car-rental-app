@@ -1,0 +1,23 @@
+<div class="cars-container">
+  <h1 class="title">רכבים זמינים להשכרה</h1>
+
+  <div class="cars-grid">
+    @for (car of arr; track car.IdCar) {
+      <div class="car-card">
+        <div class="car-icon">🚗</div>
+        <div class="car-details">
+          <h3>קוד רכב: {{ car.IdCar }}</h3> 
+          
+          <p><strong>מספר מקומות:</strong> {{ car.numPlace }}</p>
+          <p><strong>רמת רכב:</strong> {{ car.level }}</p>
+          
+          <div class="prices">
+            <span class="price-day">יום: {{ car.priseDay }}₪</span>
+            <span class="price-week">שלושה ימים: {{ car.priceThreeDays }}₪</span>
+          </div>
+        </div>
+        <button class="rent-btn" (click)="rentCar(car)">השכר עכשיו</button>
+      </div>
+    }
+  </div>
+</div>
