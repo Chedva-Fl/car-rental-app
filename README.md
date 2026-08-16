@@ -111,9 +111,3 @@ Backend/DAL/CarsDB.mdf
 ## Notes
 
 This project is a legacy ASP.NET Web API application and is best run through Visual Studio for the backend.
-
-If you want, I can also add:
-- a screenshot section
-- API endpoint documentation
-- a Docker setup
-- a more polished GitHub-ready README version
